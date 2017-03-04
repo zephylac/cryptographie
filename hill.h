@@ -9,6 +9,6 @@ typedef struct param_s{
  * FONCTIONS
  */
 extern param_t * paramEncodage();
-extern char * encodage( char * chaine, int taille , param_t * param);
+extern void encodage( char * chaine, int taille , param_t * param);
 
 #endif

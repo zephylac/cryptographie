@@ -4,7 +4,6 @@
 
 int main() {
   param_t * param = NULL ; 
-  char * res = NULL;
   printf( "Debut du programme des test sur l'encodage de hill\n" ) ; 
 
   
@@ -14,12 +13,8 @@ int main() {
 
   printf("encodage de : ELECTION\n");
 
-  res = encodage("ELECTION",8,param);
+  encodage("ELECTION",8,param);
 
-  printf("%s\n",res); 
-  free(res);
-  free(param->mat);
-  free(param);
   printf( "Fin du programme des test sur l'encodage de hill\n" ) ; 
   
 
