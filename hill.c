@@ -44,7 +44,6 @@ static int * etape1(char * chaine, int taille){
 	for(i=0;i<taille;i++){
 		tab[i] = char2int(chaine[i]);
 	}
-	free(chaine);
 	return tab;
 }
 
@@ -61,11 +60,12 @@ static int * etape2(int * tab, int taille, int m, int * mat){
 }
 
 static char * etape4(int * tab2,int taille){
-	char * chaine2 = malloc(sizeof(char)*taille);
+	char * chaine2 = malloc(sizeof(char)*(taille+1));
 	int i;
 	for(i=0;i<taille;i++){
 		chaine2[i] = int2char(tab2[i]);
 	}
+	chaine2[i] = '\0';
 	free(tab2);
 	return chaine2;
 }

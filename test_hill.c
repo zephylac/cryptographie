@@ -1,9 +1,10 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <hill.h>
 
 int main() {
   param_t * param = NULL ; 
-
+  char * res = NULL;
   printf( "Debut du programme des test sur l'encodage de hill\n" ) ; 
 
   
@@ -11,11 +12,14 @@ int main() {
   
   param = paramEncodage() ;
 
-  printf("encodage de : ELECTION");
+  printf("encodage de : ELECTION\n");
 
-  char * res = encodage("ELECTION",8,param);
+  res = encodage("ELECTION",8,param);
 
-  printf("%s",res);
+  printf("%s\n",res); 
+  free(res);
+  free(param->mat);
+  free(param);
   printf( "Fin du programme des test sur l'encodage de hill\n" ) ; 
   
 
