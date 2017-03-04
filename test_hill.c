@@ -5,7 +5,8 @@
 int main() {
   param_t * param = NULL ; 
   printf( "Debut du programme des test sur l'encodage de hill\n" ) ; 
-
+  
+  /*determinant(&tab,3);*/
   
   printf( "Test encogade\n" ) ;
   

@@ -1,9 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <hill.h>
-
-
-
+#include <math.h>
+extern int determinant(int * matrice, int ordre){	
+	int i, j, k, det, ratio;
+    	for(i = 0; i < ordre; i++){
+        	for(j = 0; j < ordre; j++){
+            		if(j > i){
+                		ratio = matrice[j*ordre+i]/matrice[i*ordre+i];
+                		for(k = 0; k < ordre; k++){
+                    			matrice[j*ordre+k] -= ratio * matrice[i*ordre+k];
+                		}
+            		}
+        	}
+    	}
+	det = 0;
+    	for(i = 0; i < ordre; i++)
+    		det *= matrice[i*ordre+i];
+    	printf("Le déterminant est: %i\n", det);
+	return det;
+}
 
 
 extern param_t * paramEncodage(){
@@ -38,7 +54,7 @@ static char int2char(int value){
 	return value + 'A';
 }
 
-static int * etape1(char * chaine, int taille){
+static int * string2tabInt(char * chaine, int taille){
 	int * tab = malloc(sizeof(int)*taille);
 	int i;
 	for(i=0;i<taille;i++){
@@ -88,7 +104,7 @@ extern void encodage( char * chaine, int taille, param_t * param){
 	int * tab2 = NULL;
 	printf("%c\n",int2char(3));
 
-	tab = etape1(chaine,taille);
+	tab = string2tabInt(chaine,taille);
 	tab2 = etape2(tab,taille,(param->m),(param->mat));
 	
 	res = etape4(tab2,taille);	
@@ -99,3 +115,7 @@ extern void encodage( char * chaine, int taille, param_t * param){
 	free(param->mat);
 	free(param);
 }
+
+
+
+

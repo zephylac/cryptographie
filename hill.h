@@ -10,5 +10,6 @@ typedef struct param_s{
  */
 extern param_t * paramEncodage();
 extern void encodage( char * chaine, int taille , param_t * param);
+extern int determinant(int * matrice, int ordre);
 
 #endif
