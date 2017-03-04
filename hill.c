@@ -1,17 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <hill.h>
 
-int char2int(char car){
+
+
+
+
+extern param_t * paramEncodage(){
+	int i, j;
+	param_t * param = malloc(sizeof(param_t));
+	
+	printf("Veuillez choisir le nombre de combinaison(s) linéaire(s) : ");
+	scanf("%i",(&(param)->m));
+	
+	int * mat = malloc(sizeof(int)*(param->m)*2);
+	printf("Matrice d'encodage\n");
+	for(i=0,j=0; i < (param->m) * 2;i++,j++){
+		if(j>1){
+			j = 0;
+		}
+		printf("Case[%i][%i] : ",i,j);
+		scanf("%i",(&mat[i]));
+
+	}
+	param -> mat = mat;
+	return param;
+}
+
+
+static int char2int(char car){
 	if (car >= 'a' && car <= 'z') return car - 'a';
 	else if (car >= 'A' && car <= 'Z') return car - 'A';
 	return -1;
 }
 
-char int2char(int value){
+static char int2char(int value){
 	return value + 'A';
 }
 
-int * etape1(char * chaine, int taille){
+static int * etape1(char * chaine, int taille){
 	int * tab = malloc(sizeof(int)*taille);
 	int i;
 	for(i=0;i<taille;i++){
@@ -21,7 +48,7 @@ int * etape1(char * chaine, int taille){
 	return tab;
 }
 
-int * etape2(int * tab, int taille, int m, int * mat){
+static int * etape2(int * tab, int taille, int m, int * mat){
 	int * tab2 = malloc(sizeof(int)*taille*m);
 	int i,j;
 	for(i = 0; i < taille; i+=m){
@@ -33,7 +60,7 @@ int * etape2(int * tab, int taille, int m, int * mat){
 	return tab2;
 }
 
-char * etape4(int * tab2,int taille){
+static char * etape4(int * tab2,int taille){
 	char * chaine2 = malloc(sizeof(char)*taille);
 	int i;
 	for(i=0;i<taille;i++){
@@ -43,11 +70,6 @@ char * etape4(int * tab2,int taille){
 	return chaine2;
 }
 
-char * encodage( char * chaine, int taille , int m, int * mat){
-	return etape4(etape2(etape1(chaine,taille),taille,m,mat),taille);
-}
-
-int main(){
-	
-	return 1;
+extern char * encodage( char * chaine, int taille, param_t * param){
+	return (etape4(etape2(etape1(chaine,taille),taille,((param)->m),((param)->mat)),taille));
 }
